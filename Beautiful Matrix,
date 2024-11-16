@@ -1,0 +1,28 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+ 
+int main() {
+    int matrix[5][5];  // 5x5 matrix
+    int row, col;
+ 
+    // Reading the input matrix and finding the position of '1'
+    for (int i = 0; i < 5; ++i) {
+        for (int j = 0; j < 5; ++j) {
+            cin >> matrix[i][j];
+            if (matrix[i][j] == 1) {
+                row = i; // row where '1' is found
+                col = j; // column where '1' is found
+            }
+        }
+    }
+ 
+    // The position (2, 2) is the middle of the matrix (3rd row, 3rd column)
+    // Calculating the Manhattan distance to move '1' to the middle (2, 2)
+    int moves = abs(row - 2) + abs(col - 2);
+ 
+    // Output the number of moves
+    cout << moves << endl;
+ 
+    return 0;
+}
