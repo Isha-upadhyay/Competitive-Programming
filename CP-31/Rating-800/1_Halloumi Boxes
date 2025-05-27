@@ -1,0 +1,39 @@
+//https://codeforces.com/problemset/problem/1903/A
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+ 
+int main() {
+    int t;
+    cin >> t; // number of test cases
+ 
+    while (t--) {
+        int n, k;
+        cin >> n >> k;
+ 
+        vector<int> a(n), sorted_a(n);
+ 
+        for (int i = 0; i < n; i++) {
+            cin >> a[i];
+            sorted_a[i] = a[i];
+        }
+ 
+        sort(sorted_a.begin(), sorted_a.end()); // sorted version of array
+ 
+        if (k == 1) {
+            // agar sirf ek element hi reverse kar sakte ho, to kuch change nahi kar paoge
+            if (a == sorted_a) {
+                cout << "YES\n"; // already sorted hai
+            } else {
+                cout << "NO\n"; // sorted nahi hai, aur k = 1 se sort possible nahi
+            }
+        } else {
+            // k > 1 hone ka matlab hai tum almost kuch bhi kar sakte ho
+            cout << "YES\n";
+        }
+    }
+ 
+    return 0;
+}
