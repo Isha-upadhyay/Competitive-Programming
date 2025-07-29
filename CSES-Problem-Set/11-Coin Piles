@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+
+
+int main(){
+    int  t;
+    cin >> t;
+
+    while(t--){
+        long long a, b;
+        cin >> a >> b;
+
+        long long sum = a + b;
+        long long mn = min(a, b);
+        long long mx = max(a, b);
+
+        if(sum % 3 == 0 && mn * 2 >= mx){
+            cout << "YES\n";
+        }else{
+            cout << "NO\n";
+        }
+    }
+    return 0;
+}
