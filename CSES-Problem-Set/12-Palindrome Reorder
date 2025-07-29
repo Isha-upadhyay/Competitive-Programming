@@ -1,0 +1,51 @@
+#include <iostream>
+#include <unordered_map>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    string s;
+    cin >> s;
+
+    int freq[26] = {0};
+
+    
+    for (char c : s) {
+        freq[c - 'A']++;
+    }
+
+  
+    int oddCount = 0;
+    char oddChar = 0;
+
+    for (int i = 0; i < 26; i++) {
+        if (freq[i] % 2 != 0) {
+            oddCount++;
+            oddChar = i + 'A';
+        }
+    }
+
+    
+    if (oddCount > 1) {
+        cout << "NO SOLUTION\n";
+        return 0;
+    }
+
+    
+    string half = "", mid = "";
+
+    for (int i = 0; i < 26; i++) {
+        string part(freq[i] / 2, i + 'A');
+        half += part;
+    }
+
+    if (oddCount == 1) {
+        mid += string(freq[oddChar - 'A'], oddChar);
+    }
+
+    string result = half + mid + string(half.rbegin(), half.rend());
+    cout << result << "\n";
+
+    return 0;
+}
