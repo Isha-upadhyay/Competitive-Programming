@@ -1,0 +1,19 @@
+#include <iostream>
+#include <bitset>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    int total = 1 << n; // total = 2^n
+
+    for (int i = 0; i < total; ++i) {
+        int gray = i ^ (i >> 1); // Gray code formula
+        bitset<16> b(gray);      // Convert to binary with up to 16 bits
+        string result = b.to_string().substr(16 - n); // Take last n bits
+        cout << result << endl;
+    }
+
+    return 0;
+}
