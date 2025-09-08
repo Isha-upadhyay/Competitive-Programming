@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    // n x n grid banaya
+    vector<vector<int>> a(n, vector<int>(n));
+
+    for (int r = 0; r < n; r++) {
+        for (int c = 0; c < n; c++) {
+
+            // yahan hum row me left + column me upar ke numbers collect karenge
+            unordered_set<int> used;
+
+            // left wale numbers row me
+            for (int k = 0; k < c; k++) used.insert(a[r][k]);
+            // upar wale numbers column me
+            for (int k = 0; k < r; k++) used.insert(a[k][c]);
+
+            // ab chhoti se chhoti missing number (mex) find karo
+            int x = 0;
+            while (used.count(x)) x++;
+
+            a[r][c] = x; // grid me daal do
+            cout << x << " "; // print karo
+        }
+        cout << "\n";
+    }
+}
