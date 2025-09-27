@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int main() {
+    long long n;
+    cin >> n;
+    long long a[n];
+    
+    for(int i = 0; i < n; i++){
+        cin >> a[i];
+    }
+    
+    long long min_Operations = LLONG_MAX; // use LLONG_MAX for long long
+    
+    for(int i = 0; i < n; i++){
+        min_Operations = min(min_Operations, llabs(a[i])); // llabs for long long
+    }
+    
+    cout << min_Operations << endl;
+    return 0;
+}
