@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        long long n;
+        cin >> n;
+        vector<long long> a(n - 1);   // n-1 efficiencies
+        for (long long i = 0; i < n - 1; i++) {
+            cin >> a[i];
+        }
+ 
+        long long sum = 0;
+        for (long long i = 0; i < n - 1; i++) {
+            sum += a[i];
+        }
+ 
+        cout << -sum << endl;   // missing team efficiency
+    }
+    return 0;
+}
