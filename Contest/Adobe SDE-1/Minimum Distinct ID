@@ -1,0 +1,41 @@
+// Write your code here
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int T;
+    cin >> T;
+
+    while(T--){
+        int N, M;
+        cin >> N >> M;
+        vector<int> arr(N);
+        for(int i=0;i<N;i++){
+            cin >> arr[i];
+        }
+
+        unordered_map<int, int>freq;
+        for(int id:arr) freq[id]++;
+
+        vector<int>counts;
+        for(auto &p : freq) counts.push_back(p.second);
+
+        sort(counts.begin(), counts.end());
+
+        int unique = counts.size();
+
+        for(int c:counts){
+            if(M>=c){
+                M-=c;
+                unique--;
+            }else{
+                break;
+            }
+        }
+        cout << unique << "\n";
+    }
+    return 0;
+}
