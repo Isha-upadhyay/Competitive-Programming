@@ -1,0 +1,67 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+// Function to find indices of top K maximum values in an array
+vector<int> findTopKIndices(vector<int> &arr, int K) {
+    vector<pair<int, int>> tmp(arr.size()); // {value, index}
+
+    // Store (value, index)
+    for (int i = 0; i < (int)arr.size(); i++) {
+        tmp[i] = {arr[i], i};
+    }
+
+    // Sort in descending order based on values
+    sort(tmp.rbegin(), tmp.rend()); // O(N log N)
+
+    // Get top K indices (or less if array < K)
+    vector<int> indices;
+    for (int i = 0; i < min(K, (int)arr.size()); i++) {
+        indices.push_back(tmp[i].second);
+    }
+    return indices;
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;
+    cin >> t; // Number of test cases
+
+    while (t--) {
+        int n;
+        cin >> n; // Number of days
+
+        vector<int> a(n), b(n), c(n);
+        for (int i = 0; i < n; i++) cin >> a[i];
+        for (int i = 0; i < n; i++) cin >> b[i];
+        for (int i = 0; i < n; i++) cin >> c[i];
+
+        // Find top 5 indices for each activity (safe upper bound)
+        vector<int> maxA = findTopKIndices(a, 5);
+        vector<int> maxB = findTopKIndices(b, 5);
+        vector<int> maxC = findTopKIndices(c, 5);
+
+        long long ans = 0;
+
+        // Try all combinations of top elements (5 * 5 * 5 = 125 total)
+        for (int i = 0; i < (int)maxA.size(); i++) {
+            for (int j = 0; j < (int)maxB.size(); j++) {
+                for (int k = 0; k < (int)maxC.size(); k++) {
+                    int x = maxA[i], y = maxB[j], z = maxC[k];
+
+                    // Ensure all days are different
+                    if (x == y || y == z || z == x) continue;
+
+                    // Calculate total friends
+                    long long total = (long long)a[x] + b[y] + c[z];
+                    ans = max(ans, total);
+                }
+            }
+        }
+
+        cout << ans << "\n"; // Output the max total for this test case
+    }
+
+    return 0;
+}
